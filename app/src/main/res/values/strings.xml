@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">LibraryX</string>
+    <string name="logo">logo</string>
+    <string name="libraryx">LibraryX</string>
+    <string name="see_all_books">See All Books</string>
+    <string name="finished_books">Finished Books</string>
+    <string name="wishlist">Wishlist</string>
+    <string name="favourites">Favourites</string>
+    <string name="about">ABOUT</string>
+    <string name="currently_reading_books">Currently Reading Books</string>
+
+
+    <array name="numbers">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+        <item>55</item>
+
+    </array>
+</resources>
