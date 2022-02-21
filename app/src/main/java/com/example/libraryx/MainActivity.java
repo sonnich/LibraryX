@@ -4,8 +4,11 @@ package com.example.libraryx;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import android.view.View;
+import android.widget.Button;
 import android.widget.NumberPicker;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 
     NumberPicker numberPicker;
+    Button btnSeeAll, btnCurrentlyReading,btnFinishedBooks ,btnWishList ,btnFavourites ,btnAbout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +24,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         String[] valuesDisplayed= getPickerValues(10);
-        numberPicker = findViewById(R.id.numberPicker);
         setupNumberPicker(numberPicker, valuesDisplayed);
+
+        initViews();
+
+        btnSeeAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AllBooksActivity.class);
+
+            }
+        });
+
+
+
 
 
 
@@ -60,6 +76,18 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void initViews(){
+
+        btnSeeAll = findViewById(R.id.btnSeeAll);
+        btnCurrentlyReading = findViewById(R.id.btnCurrentlyReading);
+        btnFinishedBooks = findViewById(R.id.btnFinishedBooks);
+        btnWishList = findViewById(R.id.btnWishlist);
+        btnFavourites = findViewById(R.id.btnFavourites);
+        btnAbout = findViewById(R.id.btnAbout);
+        numberPicker = findViewById(R.id.numberPicker);
 
     }
 }
