@@ -15,8 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
-    NumberPicker numberPicker;
-    Button btnSeeAll, btnCurrentlyReading,btnFinishedBooks ,btnWishList ,btnFavourites ,btnAbout;
+    private NumberPicker numberPicker;
+    private Button btnSeeAll, btnCurrentlyReading,btnFinishedBooks ,btnWishList ,btnFavourites ,btnAbout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +24,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         String[] valuesDisplayed= getPickerValues(10);
-        setupNumberPicker(numberPicker, valuesDisplayed);
 
         initViews();
+        setupNumberPicker(numberPicker, valuesDisplayed);
 
         btnSeeAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AllBooksActivity.class);
+                startActivity(intent);
 
             }
         });
@@ -88,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
         btnFavourites = findViewById(R.id.btnFavourites);
         btnAbout = findViewById(R.id.btnAbout);
         numberPicker = findViewById(R.id.numberPicker);
+
 
     }
 }
