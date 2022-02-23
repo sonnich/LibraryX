@@ -10,6 +10,13 @@
     <string name="currently_reading_books">Currently Reading Books</string>
     <string name="author">Author:</string>
     <string name="placeholder_des">placeholder des</string>
+    <string name="cover_of_the_book">Cover of the book</string>
+    <string name="want_to_read">Want to read</string>
+    <string name="already_read">Already Read</string>
+    <string name="add_to_favourites">Add to Favourites</string>
+    <string name="currently_reading">Currently Reading</string>
+    <string name="pages">Pages:</string>
+    <string name="title">Title:</string>
 
 
     <array name="numbers">

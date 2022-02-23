@@ -1,6 +1,7 @@
 package com.example.libraryx;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -24,7 +25,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
 
     private static final String TAG = "BookRecViewAdapter";
 
-    ArrayList<Book> books = new ArrayList<>();
+    private ArrayList<Book> books = new ArrayList<>();
     private Context mContext;
 
     public BookRecViewAdapter(Context mContext) {
@@ -44,6 +45,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
         //method to control what should be done with each entry in the dataset;
         Log.d(TAG, "onBindViewHolder: called");
         holder.txtTitle.setText(books.get(position).getName());
+        //loading image from url as bitmap into ImageView. Needs Glide
         Glide.with(mContext)
                 .asBitmap()
                 .load(books.get(position).getImageURL())
@@ -53,7 +55,9 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
         holder.parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mContext, books.get(holder.getAdapterPosition()).getName()+ " selected", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, BookActivity.class);
+                mContext.startActivity(intent);
+                //Toast.makeText(mContext, books.get(holder.getAdapterPosition()).getName()+ " selected", Toast.LENGTH_SHORT).show();
             }
         });
 
