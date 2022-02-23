@@ -9,32 +9,90 @@
     android:id="@+id/list_item_parent">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="200dp"
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/img_listItem"
-            android:layout_width="130dp"
-            android:layout_height="150dp"
-            android:src="@mipmap/ic_launcher"
-            android:contentDescription="Placeholder"/>
-
-
-        <TextView
-            android:id="@+id/txt_itemTitle"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Placeholder"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_below="@+id/img_listItem"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
-            />
+            android:id="@+id/relCollapsed">
+
+            <ImageView
+                android:id="@+id/img_listItem"
+                android:layout_width="130dp"
+                android:layout_height="150dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="Placeholder"/>
 
 
+            <TextView
+                android:id="@+id/txt_itemTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Placeholder"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_below="@+id/img_listItem"
+                android:layout_centerHorizontal="true"
+
+                android:layout_marginTop="5dp"
+                />
+
+            <ImageView
+                android:id="@+id/btnDownArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_down_arrow"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@+id/img_listItem"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relCollapsed"
+            android:id="@+id/relExpanded"
+            android:visibility="gone"
+            >
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/author"
+                android:id="@+id/txtAuthor"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="authorName"
+                android:id="@+id/txtAuthorName"
+                android:layout_below="@+id/txtAuthor"
+                />
+            <TextView
+                android:id="@+id/txtShortDes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/placeholder_des"
+                android:layout_below="@+id/txtAuthorName"
+                android:layout_marginTop="7dp"/>
+
+            <ImageView
+                android:id="@+id/btnUpArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_up_arrow"
+                android:layout_below="@+id/txtShortDes"
+                android:layout_alignParentEnd="true"
+                />
+
+        </RelativeLayout>
 
 
     </RelativeLayout>
+
+
 
 </com.google.android.material.card.MaterialCardView>

@@ -8,6 +8,8 @@
     <string name="favourites">Favourites</string>
     <string name="about">ABOUT</string>
     <string name="currently_reading_books">Currently Reading Books</string>
+    <string name="author">Author:</string>
+    <string name="placeholder_des">placeholder des</string>
 
 
     <array name="numbers">
