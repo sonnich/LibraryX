@@ -1,6 +1,9 @@
 package com.example.libraryx;
 
-public class Book {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Book implements Parcelable {
 
     private int id;
     private String name;
@@ -21,6 +24,45 @@ public class Book {
         this.imageURL = imageURL;
         this.isExpanded = false;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel p, int i) {
+        p.writeInt(id);
+        p.writeString(name);
+        p.writeString(author);
+        p.writeInt(pages);
+        p.writeString(shortDes);
+        p.writeString(longDes);
+        p.writeString(imageURL);
+
+    }
+
+    protected Book (Parcel in){
+        id = in.readInt();
+        name = in.readString();
+        author = in.readString();
+        pages = in.readInt();
+        shortDes = in.readString();
+        longDes = in.readString();
+        imageURL = in.readString();
+    }
+
+    public static final Creator<Book> CREATOR = new Creator<Book>() {
+        @Override
+        public Book createFromParcel(Parcel parcel) {
+            return new Book(parcel);
+        }
+
+        @Override
+        public Book[] newArray(int i) {
+            return new Book[i];
+        }
+    };
 
     public int getId() {
         return id;

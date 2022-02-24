@@ -24,6 +24,7 @@ import java.util.ArrayList;
 public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.ViewHolder>{
 
     private static final String TAG = "BookRecViewAdapter";
+    private static final String BOOK = "book";
 
     private ArrayList<Book> books = new ArrayList<>();
     private Context mContext;
@@ -56,6 +57,8 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, BookActivity.class);
+                //intent.putExtra(BOOKID, books.get(position).getId());
+                intent.putExtra(BOOK, books.get(holder.getAdapterPosition()));
                 mContext.startActivity(intent);
                 //Toast.makeText(mContext, books.get(holder.getAdapterPosition()).getName()+ " selected", Toast.LENGTH_SHORT).show();
             }
@@ -128,8 +131,6 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
                     notifyItemChanged(getAdapterPosition());
                 }
             });
-
-
 
         }
     }
