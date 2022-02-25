@@ -17,11 +17,13 @@ public class MainActivity extends AppCompatActivity {
 
     private NumberPicker numberPicker;
     private Button btnSeeAll, btnCurrentlyReading,btnFinishedBooks ,btnWishList ,btnFavourites ,btnAbout;
+    private Utils utils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        utils = Utils.getInstance();
 
         String[] valuesDisplayed= getPickerValues(10);
 
@@ -34,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, AllBooksActivity.class);
                 startActivity(intent);
 
+            }
+        });
+
+        btnFinishedBooks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, AlreadyReadBookActivity.class);
+                startActivity(intent);
             }
         });
 

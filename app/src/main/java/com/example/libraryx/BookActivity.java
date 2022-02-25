@@ -40,10 +40,21 @@ public class BookActivity extends AppCompatActivity {
             initViews();
             setData(b1);
             checkAlreadyRead(b1);
+            checkHaveFavored(b1);
 
         }
 
 
+
+
+    }
+
+    /**
+     * handles adding book to list of favored books + button func
+     * @param book
+     */
+
+    public void checkHaveFavored(Book book){
 
 
     }
@@ -57,16 +68,11 @@ public class BookActivity extends AppCompatActivity {
         ArrayList<Book> alreadyList = Utils.getInstance().getAlreadyReadList();
         for (Book book:alreadyList) {
             if(book.getId()==b.getId()){
-
                 haveRead=true;
-                
             }
-
         }
-
         if(haveRead){
             btnAddAlreadyRead.setEnabled(false);
-
         } else {
             btnAddAlreadyRead.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -75,7 +81,8 @@ public class BookActivity extends AppCompatActivity {
                         Toast.makeText(BookActivity.this, b.getName()+" Added to Already Read!", Toast.LENGTH_SHORT).show();
 
                         btnAddAlreadyRead.setEnabled(false);
-                        //TODO create the activity for already read books;
+                        Intent intent = new Intent(BookActivity.this, AlreadyReadBookActivity.class);
+                        startActivity(intent);
                     } else {
                         Toast.makeText(BookActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                     }
