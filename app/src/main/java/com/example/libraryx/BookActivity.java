@@ -28,6 +28,8 @@ public class BookActivity extends AppCompatActivity {
 
     private static final String BOOK = "book";
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,12 +43,72 @@ public class BookActivity extends AppCompatActivity {
             setData(b1);
             checkAlreadyRead(b1);
             checkHaveFavored(b1);
+            checkHaveWanted(b1);
+            checkCurrentlyReading(b1);
+
 
         }
 
 
 
 
+    }
+
+    public void checkCurrentlyReading(Book book){
+        for (Book b: Utils.getCurrentlyReadingList()) {
+            if (b.getId() == book.getId()) {
+                haveCurrented = true;
+                break;
+            }
+        }
+        if(haveCurrented){
+            btnAddCurrent.setEnabled(false);
+        } else {
+            btnAddCurrent.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(Utils.getInstance().addToCurrentlyReading(book)){
+                        Intent intent = new Intent(BookActivity.this, CurrentlyReadingActivity.class);
+                        btnAddCurrent.setEnabled(false);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(BookActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+        }
+    }
+
+    /**
+     * handles adding book to want to read list + button functionality
+     * @param book
+     */
+
+    public void checkHaveWanted(Book book){
+        for (Book b: Utils.getWantToReadList()) {
+            if (b.getId() == book.getId()) {
+                haveWanted = true;
+                break;
+            }
+        }
+        if(haveWanted){
+            btnAddWant.setEnabled(false);
+        } else {
+            btnAddWant.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(Utils.getInstance().addToWanted(book)){
+                        Intent intent = new Intent(BookActivity.this, FavouriteBooks.class);
+                        btnAddWant.setEnabled(false);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(BookActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+        }
     }
 
     /**
@@ -56,7 +118,30 @@ public class BookActivity extends AppCompatActivity {
 
     public void checkHaveFavored(Book book){
 
+        for (Book b:Utils.getFavouriteList()) {
 
+            if (b.getId() == book.getId()) {
+                haveFavored = true;
+                break;
+            }
+        }
+        if(haveFavored){
+            btnAddFavourite.setEnabled(false);
+        } else {
+            btnAddFavourite.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(Utils.getInstance().addToFavourites(book)){
+                        Toast.makeText(BookActivity.this, book.getName()+ " added to favourites", Toast.LENGTH_SHORT).show();
+                        btnAddFavourite.setEnabled(false);
+                        Intent intent = new Intent(BookActivity.this, FavouriteBooks.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(BookActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 
     /**
@@ -67,8 +152,9 @@ public class BookActivity extends AppCompatActivity {
     public void checkAlreadyRead(Book b){
         ArrayList<Book> alreadyList = Utils.getInstance().getAlreadyReadList();
         for (Book book:alreadyList) {
-            if(book.getId()==b.getId()){
-                haveRead=true;
+            if (book.getId() == b.getId()) {
+                haveRead = true;
+                break;
             }
         }
         if(haveRead){

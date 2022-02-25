@@ -69,6 +69,17 @@ public class Utils {
 
     }
 
+    public boolean addToFavourites(Book b){
+        return favouriteList.add(b);
+    }
+    public boolean addToWanted(Book book){
+        return wantToReadList.add(book);
+    }
+
+    public boolean addToCurrentlyReading(Book book){
+        return currentlyReadingList.add(book);
+    }
+
     public static ArrayList<Book> getAllBooksList() {
         return allBooksList;
     }

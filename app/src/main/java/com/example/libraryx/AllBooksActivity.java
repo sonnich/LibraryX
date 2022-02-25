@@ -14,6 +14,7 @@ public class AllBooksActivity extends AppCompatActivity {
     private static final String TAG = "AllBooksActivity";
 
 
+
     private RecyclerView allBooksRec;
     private BookRecViewAdapter adapter;
 

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
@@ -40,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnFinishedBooks.setOnClickListener(new View.OnClickListener() {
+            
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, AlreadyReadBookActivity.class);
@@ -47,6 +49,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btnFavourites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, FavouriteBooks.class);
+                startActivity(intent);
+            }
+        });
+
+        btnWishList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, WantedBooks.class);
+                startActivity(intent);
+            }
+        });
+
+        btnCurrentlyReading.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CurrentlyReadingActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 
