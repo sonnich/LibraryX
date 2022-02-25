@@ -4,16 +4,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+
 public class BookActivity extends AppCompatActivity {
+
+    private static final String TAG = "BookActivity";
     private TextView txtTitle, txtAuthor, txtPages, txtShort, txtLong;
     private Button btnAddCurrent, btnAddWant, btnAddAlreadyRead, btnAddFavourite;
     private ImageView imgCover;
+    private boolean haveRead =false;
+    private boolean haveFavored =false;
+    private boolean haveWanted =false;
+    private boolean haveCurrented =false;
 
     private static final String BOOK = "book";
 
@@ -23,22 +34,56 @@ public class BookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book);
 
         Intent intent = getIntent();
-        Book b1 = intent.getParcelableExtra(BOOK);
+        if(intent != null) {
+            Book b1 = intent.getParcelableExtra(BOOK);
 
-        initViews();
+            initViews();
+            setData(b1);
+            checkAlreadyRead(b1);
 
-
-
-
-
-
-        setData(b1);
+        }
 
 
 
 
     }
 
+    /**
+     * handles adding book to list of already read books + button functionality
+     * @param b
+     */
+
+    public void checkAlreadyRead(Book b){
+        ArrayList<Book> alreadyList = Utils.getInstance().getAlreadyReadList();
+        for (Book book:alreadyList) {
+            if(book.getId()==b.getId()){
+
+                haveRead=true;
+                
+            }
+
+        }
+
+        if(haveRead){
+            btnAddAlreadyRead.setEnabled(false);
+
+        } else {
+            btnAddAlreadyRead.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(Utils.getInstance().addToAlreadyRead(b)){
+                        Toast.makeText(BookActivity.this, b.getName()+" Added to Already Read!", Toast.LENGTH_SHORT).show();
+
+                        btnAddAlreadyRead.setEnabled(false);
+                        //TODO create the activity for already read books;
+                    } else {
+                        Toast.makeText(BookActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+            });
+        }
+    }
 
 
     public void initViews(){

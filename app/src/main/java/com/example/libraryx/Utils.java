@@ -64,6 +64,11 @@ public class Utils {
         allBooksList.add(b2);
     }
 
+    public boolean addToAlreadyRead(Book b){
+        return alreadyReadList.add(b);
+
+    }
+
     public static ArrayList<Book> getAllBooksList() {
         return allBooksList;
     }

@@ -60,7 +60,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
                 //intent.putExtra(BOOKID, books.get(position).getId());
                 intent.putExtra(BOOK, books.get(holder.getAdapterPosition()));
                 mContext.startActivity(intent);
-                //Toast.makeText(mContext, books.get(holder.getAdapterPosition()).getName()+ " selected", Toast.LENGTH_SHORT).show();
+
             }
         });
 
