@@ -17,6 +17,7 @@
     <string name="currently_reading">Currently Reading</string>
     <string name="pages">Pages:</string>
     <string name="title">Title:</string>
+    <string name="delete">Delete</string>
 
 
     <array name="numbers">

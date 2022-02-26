@@ -50,10 +50,10 @@
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/relExpanded"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/relCollapsed"
-            android:id="@+id/relExpanded"
             android:visibility="gone"
             >
 
@@ -87,6 +87,18 @@
                 android:layout_below="@+id/txtShortDes"
                 android:layout_alignParentEnd="true"
                 />
+
+            <TextView
+                android:id="@+id/btnDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete"
+                android:layout_below="@+id/txtShortDes"
+                android:layout_toStartOf="@+id/btnUpArrow"
+                android:layout_marginEnd="7dp"
+                android:layout_marginTop="2dp"
+                android:visibility="gone"
+                android:textColor="@color/red"/>
 
         </RelativeLayout>
 

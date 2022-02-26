@@ -13,8 +13,6 @@ public class AllBooksActivity extends AppCompatActivity {
 
     private static final String TAG = "AllBooksActivity";
 
-
-
     private RecyclerView allBooksRec;
     private BookRecViewAdapter adapter;
 
@@ -23,16 +21,11 @@ public class AllBooksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_books);
 
-
-        adapter = new BookRecViewAdapter(this);
+        adapter = new BookRecViewAdapter(this, TAG);
         initView();
-        //initData();
-
         allBooksRec.setAdapter(adapter);
         allBooksRec.setLayoutManager(new LinearLayoutManager(this));
         adapter.setBooks(Utils.getInstance().getAllBooksList());
-
-
     }
 
     private void initView(){

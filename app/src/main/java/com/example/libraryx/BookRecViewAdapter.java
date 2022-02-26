@@ -25,12 +25,22 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
 
     private static final String TAG = "BookRecViewAdapter";
     private static final String BOOK = "book";
+    private static final String WANT_ID = "WantedBooks";
+    private static final String FAV_ID = "FavouriteBooks";
+    private static final String CURRENT_ID = "CurrentlyReadingActivity";
+    private static final String ALREADY_ID = "AlreadyReadBookActivity";
+    private static final String MAIN_ID = "MainActivity";
+    private static final String ALLBOOKS_ID = "AllBooksActivity";
+
 
     private ArrayList<Book> books = new ArrayList<>();
     private Context mContext;
+    private String parentActivity;
 
-    public BookRecViewAdapter(Context mContext) {
+    public BookRecViewAdapter(Context mContext, String parent) {
         this.mContext = mContext;
+        parentActivity = parent;
+
     }
 
     @NonNull
@@ -57,7 +67,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, BookActivity.class);
-                //intent.putExtra(BOOKID, books.get(position).getId());
+
                 intent.putExtra(BOOK, books.get(holder.getAdapterPosition()));
                 mContext.startActivity(intent);
 
@@ -72,6 +82,14 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
             TransitionManager.beginDelayedTransition(holder.parent);
             holder.relExpanded.setVisibility(View.VISIBLE);
             holder.btnDown.setVisibility(View.GONE);
+            String parent = parentActivity;
+            holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Book book = books.get(holder.getAdapterPosition());
+                    removeFromList(book, parent, holder);
+                }
+            });
         } else {
             //adds animations with the parent layout as argument;
             TransitionManager.beginDelayedTransition(holder.parent);
@@ -81,6 +99,45 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
 
         
 
+
+    }
+
+    public void removeFromList(Book book, String parent, ViewHolder holder){
+
+        switch (parent){
+            case CURRENT_ID:
+                if(Utils.getInstance().removeFromCurrentlyReading(book)){
+                    notifyItemRemoved(holder.getAdapterPosition());
+                    Toast.makeText(mContext, book.getName()+" removed from currently reading.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mContext, "Something went wrong =/", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case ALREADY_ID:
+                if(Utils.getInstance().removeFromAlreadyRead(book)){
+                    notifyItemRemoved(holder.getAdapterPosition());
+                    Toast.makeText(mContext, book.getName()+" removed from already read.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mContext, "Something went wrong =/", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case WANT_ID:
+                if(Utils.getInstance().removeFromWantList(book)){
+                    notifyItemRemoved(holder.getAdapterPosition());
+                    Toast.makeText(mContext, book.getName()+" removed from wishlist.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mContext, "Something went wrong =/", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case FAV_ID:
+                if(Utils.getInstance().removeFromFavourite(book)){
+                    notifyItemRemoved(holder.getAdapterPosition());
+                    Toast.makeText(mContext, book.getName()+" removed from favourites.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mContext, "Something went wrong =/", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
 
     }
 
@@ -97,7 +154,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
     public class ViewHolder extends RecyclerView.ViewHolder {
         private CardView parent;
         private ImageView imgCover, btnUp, btnDown;
-        private TextView txtTitle, txtAuthorName, txtShortDes;
+        private TextView txtTitle, txtAuthorName, txtShortDes, btnDelete;
         private RelativeLayout relExpanded;
 
         public ViewHolder(@NonNull View itemView) {
@@ -110,6 +167,7 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
             txtAuthorName = itemView.findViewById(R.id.txtAuthorName);
             txtShortDes = itemView.findViewById(R.id.txtShortDes);
             relExpanded = itemView.findViewById(R.id.relExpanded);
+            btnDelete = itemView.findViewById(R.id.btnDelete);
 
             btnDown.setOnClickListener(new View.OnClickListener() {
                 @Override

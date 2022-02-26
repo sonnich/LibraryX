@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 public class CurrentlyReadingActivity extends AppCompatActivity {
 
+    private static final String TAG = "CurrentlyReadingActivity";
     RecyclerView recCurrent;
     BookRecViewAdapter adapter;
 
@@ -18,7 +19,7 @@ public class CurrentlyReadingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_currently_reading);
 
         recCurrent = findViewById(R.id.recCurrentlyReading);
-        adapter = new BookRecViewAdapter(this);
+        adapter = new BookRecViewAdapter(this, TAG);
         recCurrent.setAdapter(adapter);
         recCurrent.setLayoutManager(new LinearLayoutManager(this));
         adapter.setBooks(Utils.getCurrentlyReadingList());

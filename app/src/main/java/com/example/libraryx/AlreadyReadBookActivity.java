@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 public class AlreadyReadBookActivity extends AppCompatActivity {
+    private static final String TAG = "AlreadyReadBookActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,7 +16,7 @@ public class AlreadyReadBookActivity extends AppCompatActivity {
         setContentView(R.layout.activity_already_read_book);
 
         RecyclerView recyclerView = findViewById(R.id.recAlreadyRead);
-        BookRecViewAdapter adapter = new BookRecViewAdapter(this);
+        BookRecViewAdapter adapter = new BookRecViewAdapter(this, TAG);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

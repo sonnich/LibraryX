@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 public class FavouriteBooks extends AppCompatActivity {
 
+    private static final String TAG = "FavouriteBooks";
     private RecyclerView recFavourite;
     private BookRecViewAdapter adapter;
 
@@ -18,7 +19,7 @@ public class FavouriteBooks extends AppCompatActivity {
         setContentView(R.layout.activity_favourite_books);
 
         recFavourite = findViewById(R.id.recFavouriteBooks);
-        adapter = new BookRecViewAdapter(this);
+        adapter = new BookRecViewAdapter(this, TAG);
         recFavourite.setAdapter(adapter);
         recFavourite.setLayoutManager(new LinearLayoutManager(this));
         adapter.setBooks(Utils.getFavouriteList());

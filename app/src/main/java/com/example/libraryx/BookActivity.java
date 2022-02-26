@@ -27,7 +27,7 @@ public class BookActivity extends AppCompatActivity {
     private boolean haveCurrented =false;
 
     private static final String BOOK = "book";
-
+    private Book book;
 
 
     @Override
@@ -82,10 +82,10 @@ public class BookActivity extends AppCompatActivity {
 
     /**
      * handles adding book to want to read list + button functionality
-     * @param book
+     * @param book <--book object to check
      */
 
-    public void checkHaveWanted(Book book){
+    public void checkHaveWanted(final Book book){
         for (Book b: Utils.getWantToReadList()) {
             if (b.getId() == book.getId()) {
                 haveWanted = true;
@@ -113,10 +113,11 @@ public class BookActivity extends AppCompatActivity {
 
     /**
      * handles adding book to list of favored books + button func
-     * @param book
+     * @param book <--book object to check
      */
 
-    public void checkHaveFavored(Book book){
+    public void checkHaveFavored(final Book book){
+
 
         for (Book b:Utils.getFavouriteList()) {
 
@@ -146,11 +147,12 @@ public class BookActivity extends AppCompatActivity {
 
     /**
      * handles adding book to list of already read books + button functionality
-     * @param b
+     * @param b <--book object to check
      */
 
-    public void checkAlreadyRead(Book b){
-        ArrayList<Book> alreadyList = Utils.getInstance().getAlreadyReadList();
+    public void checkAlreadyRead(final Book b){
+        Utils.getInstance();
+        ArrayList<Book> alreadyList = Utils.getAlreadyReadList();
         for (Book book:alreadyList) {
             if (book.getId() == b.getId()) {
                 haveRead = true;

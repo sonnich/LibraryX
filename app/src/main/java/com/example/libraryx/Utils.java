@@ -56,7 +56,7 @@ public class Utils {
                 " a shoot-out with the metropolitan police; a reclusive, wealthy dowager who runs a shelter for abused women;" +
                 " a hideously ugly private investigator; a mild-mannered yet ruthlessly efficient bodyguard; and a peculiarly" +
                 " insistent television-fee collector.";
-        //TODO populate starting data;
+
         Book b1 = new Book(1, "1q84", "Murikami", 500, "book about 1 q and 84", longTest, "https://imgcdn.saxo.com/_9780099578079"  );
         Book b2 = new Book(2, "The Hobbit", "Tolkien", 400, "Book about a hobbit", "book about a hobbit and some dwarves, a wizard, and a dragon."
                 ,"https://cdn3.tales.dk/thumbnail/200x0/00019/42606/cover.1497233143.jpg");
@@ -74,6 +74,26 @@ public class Utils {
     }
     public boolean addToWanted(Book book){
         return wantToReadList.add(book);
+    }
+
+    public boolean removeFromCurrentlyReading(Book book){
+        return currentlyReadingList.remove(book);
+    }
+
+    public boolean removeFromWantList(Book book){
+        return wantToReadList.remove(book);
+    }
+
+    public boolean removeFromAlreadyRead(Book book){
+        return alreadyReadList.remove(book);
+    }
+
+    public boolean removeFromFavourite(Book book){
+        return favouriteList.remove(book);
+    }
+
+    public boolean removeFromAllBooks(Book book){
+        return allBooksList.remove(book);
     }
 
     public boolean addToCurrentlyReading(Book book){

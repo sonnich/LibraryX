@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 public class WantedBooks extends AppCompatActivity {
 
+    private static final String TAG = "WantedBooks";
     RecyclerView recyclerView;
     BookRecViewAdapter adapter;
 
@@ -18,7 +19,7 @@ public class WantedBooks extends AppCompatActivity {
         setContentView(R.layout.activity_wanted_books);
 
         recyclerView = findViewById(R.id.recWanted);
-        adapter = new BookRecViewAdapter(this);
+        adapter = new BookRecViewAdapter(this, TAG);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter.setBooks(Utils.getWantToReadList());
