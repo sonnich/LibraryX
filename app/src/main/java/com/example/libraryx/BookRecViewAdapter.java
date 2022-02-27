@@ -1,6 +1,8 @@
 package com.example.libraryx;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.Image;
 import android.util.Log;
@@ -18,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.transition.TransitionManager;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 
@@ -83,11 +86,27 @@ public class BookRecViewAdapter extends RecyclerView.Adapter<BookRecViewAdapter.
             holder.relExpanded.setVisibility(View.VISIBLE);
             holder.btnDown.setVisibility(View.GONE);
             String parent = parentActivity;
+            holder.btnDelete.setVisibility(View.VISIBLE);
             holder.btnDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Book book = books.get(holder.getAdapterPosition());
-                    removeFromList(book, parent, holder);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                    builder.setMessage("Are you sure you want to delete "+ book.getName()+ " ?");
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            removeFromList(book, parent, holder);
+                        }
+                    });
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    });
+                    builder.create().show();
+
                 }
             });
         } else {

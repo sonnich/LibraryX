@@ -4,6 +4,8 @@ package com.example.libraryx;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -19,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private NumberPicker numberPicker;
     private Button btnSeeAll, btnCurrentlyReading,btnFinishedBooks ,btnWishList ,btnFavourites ,btnAbout;
     private Utils utils;
+    public static final String URL = "url";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +73,31 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, CurrentlyReadingActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        btnAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle(getString(R.string.app_name));
+                builder.setMessage("Build by me. Check website:");
+                builder.setNegativeButton("Dismiss", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+                builder.setPositiveButton("Visit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(MainActivity.this, WebsiteActivity.class);
+                        intent.putExtra(URL, "https://www.dr.dk");
+                        startActivity(intent);
+                    }
+                });
+                builder.create().show();
             }
         });
 
