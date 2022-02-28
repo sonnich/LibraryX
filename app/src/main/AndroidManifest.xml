@@ -13,25 +13,32 @@
         android:theme="@style/Theme.LibraryX">
         <activity
             android:name=".WebsiteActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="My Site"/>
         <activity
             android:name=".WantedBooks"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/wishlist"/>
         <activity
             android:name=".CurrentlyReadingActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/currently_reading"/>
         <activity
             android:name=".FavouriteBooks"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/favourites"/>
         <activity
             android:name=".AlreadyReadBookActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/finished_books"/>
         <activity
             android:name=".BookActivity"
-            android:exported="false" />
+            android:exported="false"
+            />
         <activity
             android:name=".AllBooksActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/all_books"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

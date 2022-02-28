@@ -12,6 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
     </style>
 
     <style name="numberPickerTheme">
@@ -21,7 +22,13 @@
         <item name="android:textColorPrimary">@android:color/white</item>
         <item name="android:background">@android:color/black</item>
         <item name="android:textSize">30sp</item>
+    </style>
 
+    <style name="CustomAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_out</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_in</item>
 
 
     </style>
